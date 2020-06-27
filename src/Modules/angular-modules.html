@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>AngularJS 1.X - Controllers & Scope</title>
+    <title>AngularJS 1 - Modules</title>
     <style>
       .ng-cloak,
       [ng-cloak],
@@ -11,14 +11,33 @@
         display: none !important;
       }
     </style>
+
+    <link rel="stylesheet" href="css/ng-animate.css" />
   </head>
-  <body ng-cloak>
+  <body ng-app="appModules" ng-cloak>
     <div ng-controller="MyController as MyCtrl">
       <p>Hello, {{ MyCtrl.name }}</p>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-    <script src="app.js"></script>
-    <script src="controller.js"></script>
+    <p ng-controller="MessageController">{{ message }}</p>
+    <p ng-controller="AnotherMessageController">{{ message }}</p>
+
+    <!-- Code utilising ng-animation external module -->
+    <div>
+      <p>
+        <input type="checkbox" ng-model="showMessage" />
+        Check the box to show the message
+      </p>
+
+      <h2 class="secret-message" ng-show="showMessage">
+        Secret message!
+      </h2>
+    </div>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="../../node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./modules/app.js"></script>
+    <script src="./controllers/controller.js"></script>
+    <script src="./controllers/chained-controllers.js"></script>
   </body>
 </html>
