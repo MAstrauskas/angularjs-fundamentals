@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>AngularJS 1.X - Controllers & Scope</title>
+    <style>
+      .ng-cloak,
+      [ng-cloak],
+      [ng\:cloak] {
+        display: none !important;
+      }
+
+      .red {
+        border-color: red;
+      }
+
+      .green {
+        border-color: green;
+      }
+    </style>
+  </head>
+  <body ng-cloak>
+    <div ng-controller="MyController as MyCtrl">
+      <div ng-controller="MySecondController as MySecondCtrl">
+        {{ MySecondCtrl.name }}
+      </div>
+
+      <p>Hello, {{ MyCtrl.name }}</p>
+      <p>Your number is {{ MyCtrl.number }}</p>
+      <p>
+        <button ng-click="MyCtrl.increment()">+1</button>
+        <button ng-click="MyCtrl.decrement()">-1</button>
+      </p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script>
+      angular
+        .module("myApp", [])
+        .controller("MyController", MyController)
+        .controller("MySecondController", MySecondController);
+
+      function MyController($scope) {
+        var vm = this;
+        vm.name = "Mantas";
+        vm.number = 0;
+        vm.increment = function () {
+          vm.number = vm.number + 1;
+        };
+        vm.decrement = function () {
+          vm.number = vm.number - 1;
+        };
+      }
+
+      function MySecondController($scope) {
+        var vm = this;
+        vm.name = "Jameson";
+      }
+    </script>
+  </body>
+</html>
