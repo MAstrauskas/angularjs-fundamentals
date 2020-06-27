@@ -13,6 +13,29 @@
     </style>
   </head>
   <body ng-app="appDependencyInjection" ng-cloak>
+    <p ng-controller="LocaleController">
+      Your locale is <strong ng-bind="locale"></strong>
+    </p>
+
+    <p ng-controller="AnnotatedLocaleController">
+      Your locale is <strong ng-bind="locale"></strong> (using annotated locale)
+    </p>
+
+    <p ng-controller="InjectLocaleController">
+      Your locale is <strong ng-bind="locale"></strong> (using inject annotation
+      locale)
+    </p>
+
+    <p ng-controller="InjectorLocaleController">
+      Your locale is <strong ng-bind="locale"></strong> (using angular injector
+      annotation locale)
+    </p>
+
     <script src="../../node_modules/angular/angular.js"></script>
+    <script src="./module.js"></script>
+    <script src="./controllers/locale-controller.js"></script>
+    <script src="./controllers/annotated-locale-controller.js"></script>
+    <script src="./controllers/inject-annotation-locale-controller.js"></script>
+    <script src="./controllers/injector-locale-controller.js"></script>
   </body>
 </html>
