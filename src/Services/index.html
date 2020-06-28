@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>AngularJS 1 - Services</title>
+    <style>
+      .ng-cloak,
+      [ng-cloak],
+      [ng\:cloak] {
+        display: none !important;
+      }
+    </style>
+
+    <link rel="stylesheet" href="css/ng-animate.css" />
+  </head>
+  <body ng-app="appServices" ng-cloak>
+    <p ng-controller="ScoreController">
+      Score: {{ score.points }}
+    </p>
+
+    <p ng-controller="ScoreController">
+      <button type="button" ng-click="increment()">Increment</button>
+    </p>
+
+    <p ng-controller="RandomScoreController">
+      Random Score: {{ score.points }}
+    </p>
+
+    <p ng-controller="FactoryScoreController">
+      Score (using factory): {{ score.getPoints() }}
+    </p>
+
+    <p ng-controller="FactoryScoreController">
+      <button type="button" ng-click="increment()">
+        Increment (using factory)
+      </button>
+    </p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="./module.js"></script>
+    <script src="./services/random-score.js"></script>
+    <script src="./services/score-service.js"></script>
+    <script src="./controllers/score-value-controller.js"></script>
+
+    <script src="./services/random-score-constructor.js"></script>
+    <script src="./services/random-score-service.js"></script>
+    <script src="./controllers/constructor-score-value-controller.js"></script>
+
+    <script src="./services/score-function-factory.js"></script>
+    <script src="./controllers/factory-score-value-controller.js"></script>
+
+    <script src="./controllers/score-decrement-controller.js"></script>
+  </body>
+</html>
