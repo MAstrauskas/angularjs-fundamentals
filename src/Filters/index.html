@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -10,35 +10,90 @@
       [ng\:cloak] {
         display: none !important;
       }
-
-      .red {
-        border-color: red;
-      }
-
-      .green {
-        border-color: green;
-      }
     </style>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
   </head>
-  <body ng-cloak>
-    <div ng-init="amount = 1250.505667">
-      <p>{{ amount | currency: "€" }}</p>
-      <p>{{ amount | number: 4 }}</p>
-      <p>{{ -amount | number: 4 }}</p>
-    </div>
+  <body ng-app="appFilters" ng-cloak>
+    <div>
+      <h3>Lowercase filter</h3>
+      <p>{{ "AngularJS" | lowercase }}</p>
 
-    <div ng-init="string = 'star wars'">
-      <p>{{ string | uppercase }}</p>
-      <p>{{ string | lowercase }}</p>
-    </div>
+      <div ng-init="string = 'star wars'">
+        <p>{{ string | lowercase }}</p>
+      </div>
 
-    <div ng-init="myDate = 1399648945000">
-      <p>{{ myDate | date }}</p>
-      <p>{{ myDate | date: 'yyyy - MMMM - d H:m:s' }}</p>
-    </div>
+      <h3>Uppercase filter</h3>
+      <p>{{ "AngularJS" | lowercase | uppercase }}</p>
 
-    <div ng-init="myArray = [0, 1, 2, 3, 4, 5]">
-      <p>{{ myArray | limitTo: -2 }}</p>
+      <div ng-init="string = 'star wars'">
+        <p>{{ string | uppercase }}</p>
+      </div>
+
+      <h3>Number filter</h3>
+      <p>{{ 444.12353 | number:5 }}</p>
+
+      <h3>Currency filter</h3>
+      <p>{{ 99.995 | currency:'€':3 }}</p>
+
+      <div ng-init="amount = 1250.505667">
+        <p>{{ amount | currency: "€" }}</p>
+        <p>{{ amount | number: 4 }}</p>
+        <p>{{ -amount | number: 4 }}</p>
+      </div>
+
+      <h3>Date filter</h3>
+      <div ng-controller="DateController">
+        <p>{{ now | date}}</p>
+        <p>{{ now | date:'medium'}}</p>
+        <p>{{ now | date:'shortTime'}}</p>
+        <p>
+          {{ now | date:'yyyy-MM-dd HH:mm:ss Z'}}
+        </p>
+        <p>{{ now | date:"MMMM 'of the year' yyyy"}}</p>
+      </div>
+
+      <div ng-init="myDate = 1399648945000">
+        <p>{{ myDate | date }}</p>
+        <p>{{ myDate | date: 'yyyy - MMMM - d H:m:s' }}</p>
+      </div>
+
+      <h3>orderBy filter</h3>
+      <ol ng-controller="ItemsController">
+        <li ng-repeat="item in items | orderBy:'name'">{{ item.name }}</li>
+      </ol>
+
+      <ol ng-controller="ItemsController">
+        <li ng-repeat="item in items | orderBy:'-position'">{{ item.name }}</li>
+      </ol>
+
+      <ol ng-controller="ItemsController">
+        <li ng-repeat="item in items | orderBy:'name':true">
+          {{ item.name }}
+        </li>
+      </ol>
+
+      <h3>limitTo filter</h3>
+      <ol ng-controller="ItemsController">
+        <li ng-repeat="item in items | orderBy: '-price' | limitTo:2">
+          {{ item.price | currency }}
+        </li>
+      </ol>
+
+      <ol ng-controller="ItemsController">
+        <li ng-repeat="item in items | orderBy: '-price' | limitTo:2:2">
+          {{ item.price | currency }}
+        </li>
+      </ol>
+
+      <div ng-init="myArray = [0, 1, 2, 3, 4, 5]">
+        <p>{{ myArray | limitTo: -2 }}</p>
+      </div>
+
+      <h3>Filter filter</h3>
     </div>
 
     <div
@@ -57,6 +112,8 @@
       }
     ]"
     >
+      <h3>Mixed filters</h3>
+
       <ul>
         <li ng-repeat="rebel in rebels | orderBy: ['profession', '-age']">
           {{ rebel.name }} (age: {{ rebel.age }} is a {{ rebel.profession }}
@@ -80,6 +137,12 @@
         </li>
       </ul>
     </div>
+
     <script src="../../node_modules/angular/angular.js"></script>
+    <script src="./module.js"></script>
+    <script src="./controllers/date-controller.js"></script>
+
+    <script src="./services/items-value.js"></script>
+    <script src="./controllers/items-controller.js"></script>
   </body>
 </html>
