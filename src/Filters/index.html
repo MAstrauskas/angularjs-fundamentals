@@ -26,6 +26,8 @@
         <p>{{ string | lowercase }}</p>
       </div>
 
+      <hr />
+
       <h3>Uppercase filter</h3>
       <p>{{ "AngularJS" | lowercase | uppercase }}</p>
 
@@ -33,8 +35,12 @@
         <p>{{ string | uppercase }}</p>
       </div>
 
+      <hr />
+
       <h3>Number filter</h3>
       <p>{{ 444.12353 | number:5 }}</p>
+
+      <hr />
 
       <h3>Currency filter</h3>
       <p>{{ 99.995 | currency:'€':3 }}</p>
@@ -44,6 +50,8 @@
         <p>{{ amount | number: 4 }}</p>
         <p>{{ -amount | number: 4 }}</p>
       </div>
+
+      <hr />
 
       <h3>Date filter</h3>
       <div ng-controller="DateController">
@@ -61,6 +69,8 @@
         <p>{{ myDate | date: 'yyyy - MMMM - d H:m:s' }}</p>
       </div>
 
+      <hr />
+
       <h3>orderBy filter</h3>
       <ol ng-controller="ItemsController">
         <li ng-repeat="item in items | orderBy:'name'">{{ item.name }}</li>
@@ -75,6 +85,8 @@
           {{ item.name }}
         </li>
       </ol>
+
+      <hr />
 
       <h3>limitTo filter</h3>
       <ol ng-controller="ItemsController">
@@ -93,8 +105,82 @@
         <p>{{ myArray | limitTo: -2 }}</p>
       </div>
 
+      <hr />
+
       <h3>Filter filter</h3>
+      <h4>Example 1</h4>
+      <table class="table table-condensed" ng-controller="ItemsController">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items | filter:3">
+            <td ng-bind="item.name"></td>
+            <td ng-bind="item.color"></td>
+            <td ng-bind="item.price | currency:'€'"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Example 2</h4>
+      <table class="table table-condensed" ng-controller="ItemsController">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items | filter:{price: 10, color: 'red'}">
+            <td ng-bind="item.name"></td>
+            <td ng-bind="item.color"></td>
+            <td ng-bind="item.price | currency:'€'"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Example 3</h4>
+      Filter: <input type="text" ng-model="q" />
+      <table class="table table-condensed" ng-controller="ItemsController">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items | filter:q">
+            <td ng-bind="item.name"></td>
+            <td ng-bind="item.color"></td>
+            <td ng-bind="item.price | currency:'€'"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr />
+
+      <h3>Using Filter Controller</h3>
+      <p ng-controller="FilteredItemsController">
+        {{redItemsCount}} red items
+      </p>
+
+      <h3 />
+      <h3>Custom filters</h3>
+      <strong ng-bind="'Hey' | smiley:'&#x1F600;'"></strong>
+
+      <hr />
+
+      <h3>Custom filters with dependency injection</h3>
+      <p>The app says <strong ng-bind="'greeting' | localize"></strong></p>
     </div>
+
+    <hr />
 
     <div
       ng-init="rebels = [
@@ -144,5 +230,9 @@
 
     <script src="./services/items-value.js"></script>
     <script src="./controllers/items-controller.js"></script>
+    <script src="./controllers/filtered-items-controller.js"></script>
+    <script src="./js/smiley-filter.js"></script>
+    <script src="./js/locales-value.js"></script>
+    <script src="./js/localize-filter.js"></script>
   </body>
 </html>
