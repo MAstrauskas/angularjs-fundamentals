@@ -11,8 +11,7 @@
     "license": "MIT",
     "dependencies": {
         "angular": "1.8.0",
-        "angular-animate": "^1.8.0",
-        "http-server": "^0.12.3"
+        "angular-animate": "^1.8.0"
     },
     "devDependencies": {}
 }
