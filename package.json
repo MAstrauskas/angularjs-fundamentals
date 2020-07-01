@@ -1,14 +1,18 @@
 {
-  "name": "angular-fundamentals",
-  "version": "1.0.0",
-  "description": "Little examples of code while learning angularjs",
-  "main": "src/index.js",
-  "repository": "https://github.com/MAstrauskas/angularjs-fundamentals.git",
-  "author": "Mantas Astrauskas <MAstrauskas4@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "angular": "1.8.0",
-    "angular-animate": "^1.8.0"
-  },
-  "devDependencies": {}
+    "name": "angular-fundamentals",
+    "version": "1.0.0",
+    "description": "Little examples of code while learning angularjs",
+    "main": "src/index.js",
+    "repository": "https://github.com/MAstrauskas/angularjs-fundamentals.git",
+    "author": "Mantas Astrauskas <MAstrauskas4@gmail.com>",
+    "scripts": {
+        "run-components": "cd ./src/Components && python -m http.server"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "angular": "1.8.0",
+        "angular-animate": "^1.8.0",
+        "http-server": "^0.12.3"
+    },
+    "devDependencies": {}
 }
